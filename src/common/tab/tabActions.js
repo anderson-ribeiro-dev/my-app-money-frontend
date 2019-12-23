@@ -1,5 +1,5 @@
 export function selectTab(tabId) {
-    console.log(tabId)
+    // console.log(tabId)
 
     //retorna um action creator
     return {
