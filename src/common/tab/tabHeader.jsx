@@ -2,20 +2,24 @@ import React, { Component } from 'react'
 import { bindActionCreators }  from 'redux'
 import { connect } from 'react-redux'
 
+import If from '../operador/if'
 import { selectTab } from './tabActions'
 
 class TabHeader extends Component {
     render(){
-        let selected = this.props.tab.selected.payload === this.props.target //target=> estado global
+        const selected = this.props.tab.selected === this.props.target //target=> estado global
+        const visible = this.props.tab.visible[this.props.target]
         return (
-            <li className={selected ? 'active' : ''}>
-                <a href="javascript:;" //ignora qualquer click
-                    data-toggle="tab"
-                    onClick={() => this.props.selectTab(this.props.target)} //id do conteúdo 
-                    data-target={this.props.target}>
-                        <i className={`fa fa-${this.props.icon}`}></i> {this.props.label}
-                </a>
-            </li>
+            <If test={visible}>
+                <li className={selected ? 'active' : ''}>
+                    <a href="javascript:;" //ignora qualquer click
+                        data-toggle="tab"
+                        onClick={() => this.props.selectTab(this.props.target)} //id do conteúdo 
+                        data-target={this.props.target}>
+                            <i className={`fa fa-${this.props.icon}`}></i> {this.props.label}
+                    </a>
+                </li>
+            </If>
         )
     }
 }

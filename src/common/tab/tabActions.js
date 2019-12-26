@@ -7,3 +7,14 @@ export function selectTab(tabId) {
         payload: tabId
     }
 }
+
+
+//operador rest(junta objeto) contrário no spread, gera um array
+export function showTabs(...tabIds) {
+    const tabsToShow = {}
+    tabIds.forEach(e => tabsToShow[e] = true)
+    return {
+        type: 'TAB_SHOWED',
+        payload: tabsToShow
+    }
+}
