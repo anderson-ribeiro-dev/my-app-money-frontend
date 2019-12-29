@@ -8,9 +8,22 @@ class BillingCycleList extends Component {
     componentWillMount() {
         this.props.getList()
     }
+
+    renderRows() {
+        const list = this.props.list || [] // se props.list === undifined pros.list === null, || recebe []
+        return list.map((bc, index) => (
+            <tr key={index}>
+                <td>{bc.name}</td>
+                <td>{bc.month}</td>
+                <td>{bc.year}</td>
+            </tr>
+        ))
+    }
     
     render(){
         // console.log(this.props.list)
+        //componente de class, usa this
+        //componente de função não usa o this
         return (
             <div>
                 <table className="table">
@@ -22,7 +35,7 @@ class BillingCycleList extends Component {
                         </tr>
                     </thead>
                     <tbody>
-
+                        {this.renderRows()}
                     </tbody>
                 </table>
             </div>
