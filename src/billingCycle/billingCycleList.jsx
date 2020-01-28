@@ -1,7 +1,7 @@
 import React, { Component } from 'react' 
 import { bindActionCreators } from 'redux'
 import { connect } from 'react-redux'
-import { getList } from './billingCycleActions'
+import { getList, showUpdate, create } from './billingCycleActions'
  
 class BillingCycleList extends Component {
 
@@ -16,6 +16,11 @@ class BillingCycleList extends Component {
                 <td>{bc.name}</td>
                 <td>{bc.month}</td>
                 <td>{bc.year}</td>
+                <td>
+                    <button className="btn btn-warning" onClick={() => this.props.showUpdate(bc)}>
+                        <i className="fa fa-pencil"></i>
+                    </button>
+                </td>
             </tr>
         ))
     }
@@ -32,6 +37,7 @@ class BillingCycleList extends Component {
                             <th>Nome</th>
                             <th>Mês</th>
                             <th>Ano</th>
+                            <th>Ações</th>
                         </tr>
                     </thead>
                     <tbody>
@@ -44,6 +50,6 @@ class BillingCycleList extends Component {
 }
 
 const mapStateToProps = state => ({ list: state.billingCycle.list }) //pega reducers global main/reducers
-const mapDispatchToProps = dispatch => bindActionCreators({getList}, dispatch)
+const mapDispatchToProps = dispatch => bindActionCreators({getList, showUpdate, create}, dispatch)
 
 export default connect(mapStateToProps, mapDispatchToProps)(BillingCycleList)
