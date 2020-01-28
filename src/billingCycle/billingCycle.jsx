@@ -11,7 +11,7 @@ import TabsContent from '../common/tab/tabsContent'
 import TabHeader from '../common/tab/tabHeader'
 import TabContent from '../common/tab/tabContent'
 import { selectTab, showTabs } from '../common/tab/tabActions'
-import { create } from './billingCycleForm'
+import { create } from './billingCycleActions'
 
 import List from './billingCycleList'
 import Form from './billingCycleForm'
@@ -25,11 +25,8 @@ class BillingCycle extends Component {
    }
 
    render() {
-        const { onSubmit, readOnly, credits, debts } = this.props
        return (
            <div>
-               {/* {console.log("props", this.props.create)} */}
-               {/* {console.log("props", onSubmit)} */}
                <ContentHeader title="Ciclo de Pagamentos" small="Cadastro" />
                <Content>
                   <Tabs>

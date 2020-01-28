@@ -2,15 +2,10 @@ import React, { Component } from 'react'
 import { reduxForm, Field } from 'redux-form' //reduxForm == connect - redux, Field - tags
 import labelAndInput from '../common/form/labelAndInput'
 
-import { create } from './billingCycleActions'
-
-import { connect } from 'react-redux'
-import { bindActionCreators } from 'redux'
-
 
 class BillingCycleForm extends Component {
     render() {
-        const { handleSubmit, readOnly, credits, debts } = this.props
+        const { handleSubmit } = this.props
         // console.log(this.props)
         return (
             <form  onSubmit={handleSubmit}>
@@ -32,7 +27,6 @@ class BillingCycleForm extends Component {
         )
     }
 }
-// const onSubmit = (values, dispatch) => {
 
-// }
-export default  reduxForm({form: 'billingCycleForm' })(BillingCycleForm)
+export default  reduxForm({form: 'billingCycleForm', destroyOnUnmount: false })(BillingCycleForm)
+//destroyOnUnmount: false => não destroir o estado com os dados
