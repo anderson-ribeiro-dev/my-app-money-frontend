@@ -9,9 +9,10 @@ import LabelAndInput from '../common/form/labelAndInput'
 import ItemList from './itemList'
 
 
+
 class BillingCycleForm extends Component {
     render() {
-        const { handleSubmit, readOnly, credits } = this.props
+        const { handleSubmit, readOnly, credits, debts } = this.props
         // console.log(this.props)
         return (
             <form  onSubmit={handleSubmit}>
@@ -27,6 +28,8 @@ class BillingCycleForm extends Component {
                     />
 
                     <ItemList cols="12 6" list={credits} readOnly={readOnly} field='credits' legend='Créditos' />
+
+                    <ItemList cols="12 6" list={debts} readOnly={readOnly} field='debts' legend='Débitos' showStatus={true} />
 
                 </div>
                 <div className='box-footer' >
@@ -44,7 +47,10 @@ BillingCycleForm =  reduxForm({form: 'billingCycleForm', destroyOnUnmount: false
 const mapDispatchToProps = dispatch => bindActionCreators({ init }, dispatch)
 
 const selector = formValueSelector('billingCycleForm')//reduform
-const mapStateToProps = state => ({ credits: selector(state, 'credits') }) //obter dados do formulário, redux-form
+const mapStateToProps = state => ({ 
+    credits: selector(state, 'credits'),
+    debts: selector(state, 'debts')
+ }) //obter dados do formulário, redux-form
 
 export default connect(mapStateToProps, mapDispatchToProps)(BillingCycleForm)
 //destroyOnUnmount: false => não destroir o estado com os dados
